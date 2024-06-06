@@ -1,0 +1,5 @@
+# any excel files
+*.xlsx
+
+#any html files
+*.html
