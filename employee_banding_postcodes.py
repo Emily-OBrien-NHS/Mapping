@@ -13,6 +13,7 @@ run_date = datetime.today().strftime('%Y-%m-%d')
 
 #Only map/export data for plymouth postcodes
 plymouth_only = False
+phlebotomy = False
 
 #readin postcode to latlong data
 pcode_LL = pd.read_csv("G:/PerfInfo/Performance Management/PIT Adhocs/2021-2022/Hannah/Maps/pcode_LSOA_latlong.csv",
@@ -45,6 +46,9 @@ total_fte, total_headcount = Band_pcds.agg({'FTE':'sum', 'Band Groups':'count'})
 #Filter to only plymouth postcodes if true
 if plymouth_only:
      Band_pcds = Band_pcds.loc[Band_pcds['pcds'].str.contains(r'PL[0-9] ')].copy()
+#filter to only phlebotomists if true
+if phlebotomy:
+     Band_pcds = Band_pcds.loc[Band_pcds['PositionTitle'].str.contains('Phlebotomist')].copy()
 
 #Merge data together, group up data to postcode up to last 2 charecters to keep annonymity
 LL_df = pcode_LL.merge(Band_pcds, on='pcds', how='inner')
@@ -112,7 +116,7 @@ cols = ['B', 'C', 'D', 'E', 'F', 'G', 'H']
 col_names = band_name.columns[1:].tolist()
 
 #Excel Writer
-writer = pd.ExcelWriter(f"C:/Users/obriene/Projects/Mapping/Outputs/{run_date}_aggregate_employee_band_data Plymouth Only.xlsx", engine='xlsxwriter')
+writer = pd.ExcelWriter(f"C:/Users/obriene/Projects/Mapping/Outputs/{run_date}_aggregate_employee_band_data.xlsx", engine='xlsxwriter')
 workbook = writer.book
 
 ####COVER SHEET####
