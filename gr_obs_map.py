@@ -3,7 +3,7 @@ import pyodbc
 import folium
 import textwrap as tw
 import os
-os.chdir('C:/Users/obriene/Projects/test/Mapping')
+os.chdir('C:/Users/obriene/Projects/Mapping')
 
 #Read in patient postcode data
 df = pd.read_excel('Copy of 26205 GR Obs Scan Postcodes.xlsx', sheet_name='DATA',
@@ -44,7 +44,7 @@ for row in df_group.values.tolist():
       fill_color='lightseagreen'
    ).add_to(m)
 
-m.save(r"C:/Users/obriene/Projects/test/Mapping/GR Obs Scan Map.html")
+m.save(r"C:/Users/obriene/Projects/Mapping/GR Obs Scan Map.html")
 
 
 #Grouped by postcode area
@@ -65,4 +65,4 @@ for row in df_area.values.tolist():
       fill_color='lightseagreen'
    ).add_to(n)
 
-n.save(r"C:/Users/obriene/Projects/test/Mapping/GR Obs Scan Area Map.html")
+n.save(r"C:/Users/obriene/Projects/Mapping/GR Obs Scan Area Map.html")
